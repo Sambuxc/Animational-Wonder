@@ -47,18 +47,13 @@ struct SwiftAnimationView: View {
                         .easeInOut(duration: 2.0), // animation type
                         value: isAnimating // triggers animation when changes
                     )
-                
-                // Hidden NavigationLink
-                NavigationLink("yolo", destination: {
-                    NextScreen()
-                })
-                .hidden()
-                .navigationDestination(isPresented: $navigateToNextScreen) {
-                    NextScreen()
-                }
             }
+            .ignoresSafeArea()
             .onTapGesture {
                 triggerAnimation()
+            }
+            .navigationDestination(isPresented: $navigateToNextScreen) {
+                NextScreen()
             }
         }
     }
