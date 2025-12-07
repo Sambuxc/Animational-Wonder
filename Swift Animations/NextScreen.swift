@@ -25,6 +25,8 @@ struct NextScreen: View {
                     . font(.system(size: 80))
                     .foregroundColor(.white)
                 
+                Spacer()
+                
                 Text("Welcome")
                     .fontDesign(Font.Design.rounded)
                     .font(.largeTitle)
@@ -38,24 +40,14 @@ struct NextScreen: View {
                     . padding(. horizontal)
                 
                 Spacer()
-                    .frame(height: 50)
                 
-                Button(action: {
-                    dismiss()
-                }) {
-                    Text("Go Back")
-                        .font(.headline)
-                        .foregroundColor(.purple)
-                        .padding()
-                        .frame(maxWidth: 200)
-                        .background(Color.white)
-                        .cornerRadius(15)
-                }
+                Image("flower-of-life")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .aspectRatio(contentMode: .fill)
             }
             .padding()
         }
-        .navigationBarBackButtonHidden(true)
-        .transition(.opacity)
     }
 }
 
