@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NextScreen: View {
     @Environment(\.dismiss) private var dismiss
+    // State for tracking wand position
+    @State private var wandOffset = CGSize.zero
     
     var body: some View {
         ZStack {
@@ -22,8 +24,22 @@ struct NextScreen: View {
             
             VStack(spacing: 30) {
                 Image(systemName: "wand.and.rays")
-                    . font(.system(size: 80))
+                    .font(.system(size: 80))
                     .foregroundColor(.white)
+                    .offset(wandOffset) // apply value of where the user has dragged it
+                    .rotationEffect(.degrees(wandOffset.width / 5))
+                    .gesture(
+                        DragGesture()
+                            .onChanged { gesture in
+                                wandOffset = gesture.translation
+                            }
+                            .onEnded { _ in
+                                withAnimation(.bouncy()) {
+                                    wandOffset = .zero
+                                }
+                            }
+                        
+                    )
                 
                 Spacer()
                 
@@ -41,7 +57,7 @@ struct NextScreen: View {
                 
                 Spacer()
                 
-                Image("flower-of-life")
+                Image("flower-of-life-golden")
                     .resizable()
                     .frame(width: 200, height: 200)
                     .aspectRatio(contentMode: .fill)
