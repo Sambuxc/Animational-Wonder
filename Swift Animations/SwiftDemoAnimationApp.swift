@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct Swift_AnimationsApp: App {
+struct SwiftDemoAnimationApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SwiftAnimationView()
         }
     }
 }
